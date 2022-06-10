@@ -21,6 +21,12 @@ body {
   scroll-behavior: smooth;
 }
 
+@media only screen and (max-width: 600px) {
+  .container {
+    transform: scale(0.5);
+  }
+}
+
 .image {
   margin: 15px;
 }
