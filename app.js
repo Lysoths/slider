@@ -17,7 +17,7 @@ function calcScroll() {
   let scrollCalc = container.scrollWidth / container.children.length;
   return scrollCalc;
 }
-console.log(container.children[0]);
+
 next.addEventListener("click", () => {
   if (container.scrollLeft <= 1970) {
     container.scrollLeft += calcScroll();
@@ -28,6 +28,10 @@ next.addEventListener("click", () => {
 });
 
 back.addEventListener("click", () => {
-  container.scrollLeft -= calcScroll();
-  console.log(container.scrollLeft);
+  if (container.scrollLeft > calcScroll()) {
+    container.scrollLeft -= calcScroll();
+    console.log(container.scrollLeft);
+  } else {
+    container.scrollLeft = calcScroll() * container.children.length;
+  }
 });
