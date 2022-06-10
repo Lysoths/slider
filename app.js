@@ -11,6 +11,11 @@ for (let i = 0; i <= images.length - 1; i++) {
     "src",
     `https://source.unsplash.com/random/300x${randomNumber}`
   );
+  container.children[i].addEventListener("mouseover", () => {
+    if (container.scrollLeft <= 1970) {
+      setTimeout(scrollLeftSide, 1000);
+    }
+  });
 }
 
 function calcScroll() {
@@ -21,7 +26,6 @@ function calcScroll() {
 next.addEventListener("click", () => {
   if (container.scrollLeft <= 1970) {
     container.scrollLeft += calcScroll();
-    console.log(container.scrollLeft);
   } else {
     container.scrollLeft = 0;
   }
@@ -35,3 +39,11 @@ back.addEventListener("click", () => {
     container.scrollLeft = calcScroll() * container.children.length;
   }
 });
+
+function scrollLeftSide() {
+  container.scrollLeft += calcScroll();
+}
+
+function scrollRightSide() {
+  container.scrollLeft -= calcScroll();
+}
