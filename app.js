@@ -3,7 +3,7 @@ const images = document.querySelectorAll("img");
 const container = document.querySelector(".container");
 const back = document.querySelector(".back");
 const next = document.querySelector(".next");
-console.log(container.scrollLeft);
+
 for (let i = 0; i <= images.length - 1; i++) {
   let randomNumber = Math.ceil(Math.random() * 300 + 300);
 
@@ -13,12 +13,21 @@ for (let i = 0; i <= images.length - 1; i++) {
   );
 }
 
+function calcScroll() {
+  let scrollCalc = container.scrollWidth / container.children.length;
+  return scrollCalc;
+}
+console.log(container.children[0]);
 next.addEventListener("click", () => {
-  container.scrollLeft += 330;
-  console.log(container.scrollLeft);
+  if (container.scrollLeft <= 1970) {
+    container.scrollLeft += calcScroll();
+    console.log(container.scrollLeft);
+  } else {
+    container.scrollLeft = 0;
+  }
 });
 
 back.addEventListener("click", () => {
-  container.scrollLeft -= 330;
+  container.scrollLeft -= calcScroll();
   console.log(container.scrollLeft);
 });
